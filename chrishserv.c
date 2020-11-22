@@ -13,7 +13,7 @@ long valread;
 struct sockaddr_in address;
 int addrlen = sizeof(address);
 
-char *xerxes = "Hey from Xer server"'
+char *xerxes = "Hey from Xer server";
 
 if((server_fd = socket(AF_INET, SOCK_STREAM,0)) == 0)
 {
@@ -41,17 +41,17 @@ exit(EXIT_FAILURE);
 
 while(1)
 {
-print("\n***************Waiting for connection**********\n\n");
+printf("\nWaiting for connection\n\n");
 if((new_socket = accept(server_fd,(struct sockaddr *)&address, (socklen_t*)&addrlen))<0)
 {
 perror("In accept");
 exit(EXIT_FAILURE);
 }
 
-char buffer[40000] = {0};
-valread = read( new_socket, buffer, 40000);
+char buffer[30000] = {0};
+valread = read( new_socket, buffer, 30000);
 printf("%s\n",buffer);
-write(new_socket, hello, strlen(xerxes));
+write(new_socket, xerxes, strlen(xerxes));
 close(new_socket);
 }
 
